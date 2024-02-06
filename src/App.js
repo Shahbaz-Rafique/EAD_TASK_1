@@ -3,6 +3,9 @@ import { fetchUsers } from './services/SortService';
 import './App.css';
 import worker from './app.worker.js';
 import WebWorker from './WebWorker';
+import {
+    MDBBtn
+} from 'mdb-react-ui-kit';
 
 const App = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -20,8 +23,6 @@ const App = () => {
             webWorker.terminate()
         }
     }, []);
-
-    
 
     const sortAscending = () => {
         webWorker.postMessage({ users, type: "asc"});
@@ -59,11 +60,9 @@ const App = () => {
                         {user.name}
                     </div>
                     <div className="card-body">
-                        <h5 className="card-title">
-                            {user.email}
-                        </h5>
+                        {user.email}
                         <p className="card-text">
-                            {user.joinedOn.toString()}
+                           {user.joinedOn.toString()}
                         </p>
 
                     </div>
@@ -80,24 +79,24 @@ const App = () => {
                 <div className="row">
                     <div className="col-md-12">
                         <div className="btn-group mr-2 mt-2" role="group" aria-label="Basic example">
-                            <button
+                            <MDBBtn
                                 onClick={sortAscending}
                                 type="button"
-                                disabled={isLoading}
-                                className="btn btn-primary">
-                                Sort Ascending Number of Comments
-                            </button>
+                                style={{backgroundColor:"green"}}
+                                disabled={isLoading}>
+                                Ascending Sorting Using WebWorker
+                            </MDBBtn>
                         </div>
 
                         
                         <div className="btn-group mt-2" style={{ marginLeft: '10px' }} role="group" aria-label="Basic example">
-                            <button
+                            <MDBBtn
                                 onClick={sortDescending}
                                 type="button"
-                                disabled={isLoading}
-                                className="btn btn-success">
-                                Sort Descending Number of Comments
-                            </button>
+                                style={{backgroundColor:"green"}}
+                                disabled={isLoading}>
+                                Descending Sorting Using WebWorker
+                            </MDBBtn>
                         </div>
                     </div>
                 </div>
@@ -113,9 +112,10 @@ const App = () => {
                 }
 
                 {!isLoading &&
-                        <div className="col-md-12">
-                            {renderUsers()}
-                        </div>
+                    <div className="col-md-12">
+                        <h3 style={{marginTop:"20px",fontWeight:"bolder"}}>Employee's Data</h3>
+                        {renderUsers()}
+                    </div>
                 }
             </div>
         );

@@ -3,9 +3,9 @@ import { faker } from '@faker-js/faker';
 export function fetchUsers() {
     const users = [];
 
-    for (let i = 0; i < 25000; i++) {
+    for (let i = 0; i < 20000; i++) {
         let id = i + 1;
-        let name = faker.person.fullName();
+        let name = faker.person.firstName();
         let email = faker.internet.email();
         let joinedOn = faker.date.recent();
         let commentCount = faker.number.int({ min: 0, max: 100 });
